@@ -1,14 +1,20 @@
 import { Project} from "./createProjectAndTodos.js";
- 
+import { todoFunction } from "./TodosController.js";
 let projects = [];
 
 function projectControl(){
     const findIndex = (projectId) => {
         const index = projects.findIndex(p => p.id === projectId);
+        if (index === -1)
+            return;
         return index;
     }
     const addProject = (name) => {
         const data = new Project(name);
+        if (projects.find(p => p.name === name)){
+            console.log("Project name have already exists");
+            return;
+        }
         projects.push(data);
         return data.getProjectId();
     }
@@ -31,19 +37,30 @@ function projectControl(){
         const i = findIndex(projectId);
         return projects[i];
     }
+
+    const linkTodoAndProject = (projectId) => {
+        const todos = todoFunction.getTodos();
+        const todosArray = [];
+        todos.forEach((todo)=>{
+            if (todo.projectId === projectId)
+                todosArray.push(todo);
+        })
+        return todosArray.slice();
+    }
+
     return {
         findIndex,
         addProject,
         deleteProject,
         editProject,
         getProjects,
-        getProject
+        getProject,
+        linkTodoAndProject
     }
+    
 }
 
 export const projectFunction = projectControl();
 
-function linkTodoAndProject(){
-    
-}
+
 
