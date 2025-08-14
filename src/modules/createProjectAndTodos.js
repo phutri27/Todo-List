@@ -7,6 +7,14 @@ export class Project{
     getProjectId(){
         return this.id;
     }
+
+    getProjectName(){
+        return this.name;
+    }
+    
+    setProjectName(name){
+        this.name = name;
+    }
 }
 
 export class Todos{
@@ -20,7 +28,12 @@ export class Todos{
         this.projectId = projectId;
     }
 
-    
+    change(tasks, description, dueDate, priority){
+        this.tasks = tasks;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
 }
 
 

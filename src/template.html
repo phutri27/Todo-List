@@ -11,40 +11,14 @@
     </header>
     <div class="project">
         <button class="add-project">Add project</button>
-        <button class="add-todos">Add todos</button>
     </div>
-    <dialog class="dialog-1">
-        <form method="dialog">
+    <dialog class="dialog">
+        <form method="dialog" id="form1">
             <legend>Project</legend>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" required>
             <button type="submit" class="add-project-btn">Add</button>
             <button class="close-project-btn" type="button">Close</button>
-        </form>
-    </dialog>
-    <dialog class="dialog-2">
-        <form method="dialog">
-            <legend>Todos</legend>
-            <label for="tasks">Tasks</label>
-            <input placeholder="Task" type="text" id="tasks" name="tasks" required>
-            <label for="description">Description</label>
-            <input placeholder="Task Content" type="text" id="description" name="description">
-            <label for="dueDate">Due Date</label>
-            <input type="date" name="dueDate" id="dueDate" required>
-            <label for="priority">Priority</label>
-            <select name="priority" id="priority" required>
-                <option selected="true">Select</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-            <label for="project">Project</label>
-            <select name="project" id="project">
-                
-            </select>
-            <button type="submit" class="add-todos-btn">Add</button>
-            <button class="close-todos-btn" type="button">Close</button>
         </form>
     </dialog>
     <div class="project-list">
