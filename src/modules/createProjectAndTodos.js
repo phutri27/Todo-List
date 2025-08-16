@@ -15,6 +15,8 @@ export class Project{
     setProjectName(name){
         this.name = name;
     }
+
+
 }
 
 export class Todos{
@@ -24,7 +26,6 @@ export class Todos{
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.completed =false;
         this.projectId = projectId;
     }
 

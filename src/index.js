@@ -1,4 +1,4 @@
 import "./styles/styles.css"
-import { loadPage } from "./modules/DOMcontroller.js"
+import { loadPage } from "./modules/app.controller.js";
 
 loadPage();
