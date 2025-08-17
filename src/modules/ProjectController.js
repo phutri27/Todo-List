@@ -14,11 +14,11 @@ function projectControl(){
         const data = new Project(name);
         if (projects.find(p => p.name === name)){
             console.log("Project name have already exists");
-            return;
+            return false;
         }
         projects.push(data);
         saveProject();
-        console.log(projects);
+        return true;
     }
 
     const deleteProject = (projectId) => {

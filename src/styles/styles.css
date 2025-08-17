@@ -1,5 +1,295 @@
 body {
-  background-color: gray;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+header {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: lightblue;
+  background-color: rgb(16, 148, 88);
+}
+
+.overlay {
+  display: grid;
+  grid-template-columns: 20vw 1fr;
+}
+
+.add-project {
+  font-size: 2rem;
+  margin: 10px 0px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(30, 210, 220);
+  transition: 0.15s ease-in-out;
+}
+.add-project:hover {
+  background-color: rgb(91, 210, 250);
+  scale: 1.1;
+}
+
+.dialog {
+  background-color: lightpink;
+  width: 30vw;
+}
+.dialog form {
+  display: flex;
+  flex-direction: column;
+  background-color: lightpink;
+  font-size: 2rem;
+  gap: 10px;
+}
+.dialog form input {
+  font-size: 1.5rem;
+  width: 50%;
+}
+.dialog form button {
+  width: 15%;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 10px 0px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.dialog form button:hover {
+  background-color: rgb(223, 222, 222);
+}
+.dialog form button:active {
+  background-color: rgb(194, 193, 193);
+}
+
+.special {
+  cursor: pointer;
+  background-color: rgb(248, 159, 159);
+}
+
+.project-list {
+  background-color: lightcoral;
+  height: auto;
+  min-height: 100vh;
+  font-size: 1.7rem;
+}
+.project-list .project-div {
+  border: 5px solid rgb(50, 133, 165);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+.project-list .project-div:hover {
+  background-color: rgb(248, 159, 159);
+}
+.project-list .project-div .button-div {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+.project-list .project-div .button-div button {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.5rem;
+  border: 3px solid black;
+  border-radius: 7px;
+  scale: 1.1;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: lightgray;
+  transition: background-color 0.15s ease-in;
+}
+.project-list .project-div .button-div button:hover {
+  background-color: rgb(194, 192, 192);
+}
+.project-list .project-div .button-div button:active {
+  background-color: rgb(158, 157, 157);
+}
+.project-list .project-div p {
+  font-size: 110%;
+}
+.project-list .edit-prj {
+  border: 5px solid rgb(50, 133, 165);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.project-list .edit-prj .button-div {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+.project-list .edit-prj .button-div button {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.5rem;
+  border: 3px solid black;
+  border-radius: 7px;
+  scale: 1.1;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px 15px;
+  background-color: lightgray;
+  transition: background-color 0.15s ease-in;
+}
+.project-list .edit-prj .button-div button:hover {
+  background-color: rgb(194, 192, 192);
+}
+.project-list .edit-prj .button-div button:active {
+  background-color: rgb(158, 157, 157);
+}
+.project-list .edit-prj p {
+  font-size: 110%;
+}
+.project-list .edit-prj .edit-div {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.project-list .edit-prj .edit-div input {
+  width: 80%;
+  border-radius: 10px;
+  font-size: 1.6rem;
+}
+
+.todos-list {
+  background-color: beige;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.todos-list .todo-div {
+  border: 2px solid black;
+  width: 50%;
+  height: 55%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.todos-list .todo-div .first-div {
+  display: flex;
+  border: 2px solid black;
+}
+.todos-list .todo-div .first-div .first-elem-div {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.todos-list .todo-div .first-div .first-elem-div .task-name,
+.todos-list .todo-div .first-div .first-elem-div .due-date-p,
+.todos-list .todo-div .first-div .first-elem-div .days-to-due {
+  font-size: 2rem;
+  margin: 0px;
+  font-weight: bold;
+}
+.todos-list .todo-div .first-div .btn-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  gap: 10px;
+  width: 50%;
+  margin-right: 5px;
+}
+.todos-list .todo-div .first-div .btn-div button {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 0px;
+  border: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.2rem;
+  background-color: rgb(45, 152, 104);
+  transition: 0.15s;
+}
+.todos-list .todo-div .first-div .btn-div button:hover {
+  background-color: rgb(55, 189, 128);
+  scale: 1.1;
+}
+.todos-list .todo-div .first-div .btn-div button:active {
+  background-color: rgb(62, 228, 154);
+  scale: 1.1;
+}
+.todos-list .todo-div .priority-div {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.todos-list .todo-div .priority-div p {
+  margin: 0px;
+}
+.todos-list .add-todo-btn {
+  font-size: 2rem;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border: 2px dotted black;
+  background-color: transparent;
+  transition: 0.15s;
+}
+.todos-list .add-todo-btn:hover {
+  scale: 1.1;
+}
+
+.todo-form {
+  border: 2px solid black;
+  width: 50%;
+  height: 55%;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+.todo-form .form-div-1 {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.todo-form .form-div-1 input,
+.todo-form .form-div-1 select {
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 80%;
+  height: 40px;
+}
+.todo-form button {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.8rem;
+  padding: 20px 0px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-color: rgb(71, 66, 227);
+  color: white;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.todo-form button:hover {
+  background-color: rgb(113, 109, 243);
+}
+.todo-form button:active {
+  background-color: rgb(129, 125, 247);
 }
 
 /*# sourceMappingURL=styles.css.map */

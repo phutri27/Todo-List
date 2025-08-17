@@ -13,6 +13,7 @@ export function loadPage(){
     const todoList = document.querySelector(".todos-list");
     const todoDiv = document.querySelector(".todo-div");
     const todoForm = document.querySelector(".todo-form");
+    
 
     const view = createView({projectList, todoList, dialog});
 
@@ -25,17 +26,27 @@ export function loadPage(){
         view.todoListRender(todos, projectId);
     };
 
-    addPrjBtn.addEventListener("click", () => view.openDialog());
+    addPrjBtn.addEventListener("click", () => view.openDialog());;
     closeBtn.addEventListener("click", () => view.closeDialog());
 
     // Add project
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         const name = projecTitle.value.trim();
-        projectFunction.addProject(name);
-        projecTitle.value = '';
-        refreshProjects();
+        const hay = projectFunction.addProject(name);
+        if (!hay){
+            form.style.backgroundColor = 'red';
+            setTimeout(() =>{
+                form.style.backgroundColor = 'lightpink';
+            }, 1000) 
+        }
+        else{
+            projecTitle.value = '';
+            view.closeDialog();
+            refreshProjects();
+        }
     });
+
 
     //Todo list event
     todoList.addEventListener("click", (e) => {
@@ -98,7 +109,7 @@ export function loadPage(){
     });
 
     projectList.addEventListener("click", (e) => {
-    const div = e.target.closest(".project-div");
+    const div = e.target.closest(".project-div, .edit-prj");
     if (!div) return;
     const id = div.dataset.projectId;
     if (!id || !e.target.matches(".edit-prj-btn, .del-prj-btn, .save-edit, .project-div, .project-name"))
@@ -106,8 +117,9 @@ export function loadPage(){
     if (e.target.matches(".del-prj-btn")) {
         projectFunction.deleteProject(id);
         todoFunction.deleteTodoAfterProject(id);
-        showTodosFor(id);   
+        showTodosFor(id);
         refreshProjects();
+        document.querySelector(".add-todo-btn").remove();
     } 
     else if (e.target.matches(".edit-prj-btn")) {
         view.editProject(div);
@@ -119,6 +131,11 @@ export function loadPage(){
     } 
     else if (e.target.matches(".project-div, .project-name")) {
         showTodosFor(id);
+        document.querySelectorAll(".project-div").forEach(div => {
+            div.classList.remove("special");
+        });
+
+        div.classList.add("special");
     }
   });
   refreshProjects();

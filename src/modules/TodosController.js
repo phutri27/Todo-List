@@ -15,7 +15,6 @@ function todoControl(){
         }
         todos.push(data);
         saveTodo();
-        console.log(todos);
     }
 
     const deleteTodo = (todoId) =>{

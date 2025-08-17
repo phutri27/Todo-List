@@ -8,8 +8,10 @@ export function createView({
   {
     const projectListRender = (projects) =>{
             projectList.innerHTML = '';
+            const projectTitle = document.createElement("p");
+            projectTitle.textContent = "Projects";
+            projectList.appendChild(projectTitle);
             projects.forEach((project)=>{
-                
                 const projectDiv = document.createElement("div");
                 projectDiv.className = "project-div";
                 projectDiv.dataset.projectId = project.getProjectId();
@@ -18,35 +20,44 @@ export function createView({
                 name.textContent = project.getProjectName();
                 name.className = "project-name"
 
+                const buttonDiv =document.createElement("div");
+                buttonDiv.className = "button-div";
+
                 const editButton = document.createElement("button");
                 editButton.textContent = "Edit";
                 editButton.className = "edit-prj-btn"
-
+                
                 const delButton = document.createElement("button");
                 delButton.textContent = "Delete";
                 delButton.className = "del-prj-btn";
 
-                projectDiv.append(name, editButton, delButton);
+                buttonDiv.append(editButton, delButton)
+                projectDiv.append(name, buttonDiv);
                 projectList.appendChild(projectDiv);
             })
         }
 
     const editProject = (elemParent) =>{
-            const replaceName = elemParent.querySelector("p");
-            const replaceButton = elemParent.querySelector(".edit-prj-btn");
-            
-            const input = document.createElement("input");
-            input.id = "prjNameChange";
-            input.type = "text";
-            input.name ="prjNameChange";
+        elemParent.className = 'edit-prj';
+        const replaceName = elemParent.querySelector("p");
+        const replaceButton = elemParent.querySelector(".edit-prj-btn");
+        const editDiv = document.createElement("div");
+        editDiv.className = "edit-div";
 
-            const saveEditButton = document.createElement("button");
-            saveEditButton.textContent = "Save Edit";
-            saveEditButton.className = "save-edit";
+        const input = document.createElement("input");
+        input.id = "prjNameChange";
+        input.type = "text";
+        input.name ="prjNameChange";
+        
+        const saveEditButton = document.createElement("button");
+        saveEditButton.textContent = "Save Edit";
+        saveEditButton.className = "save-edit";
 
-            input.value = replaceName.textContent;
-            replaceButton.replaceWith(saveEditButton);
-            replaceName.replaceWith(input);
+        editDiv.appendChild(input);
+        input.value = replaceName.textContent;
+        replaceButton.replaceWith(saveEditButton);
+        replaceName.replaceWith(editDiv);
+ 
     }
 
     const todoListRender = (todos, id) => {
@@ -56,27 +67,40 @@ export function createView({
         row.dataset.todoId = todo.id;
         row.className = "todo-div";
 
+        const firstDiv = document.createElement("div");
+        firstDiv.className = "first-div";
+        const firstElemDiv = document.createElement("div");
+        firstElemDiv.className = 'first-elem-div';
+
         const taskName = document.createElement("p");
+        taskName.className = "task-name";
         taskName.textContent = todo.tasks;
 
         const description = document.createElement("p");
         description.textContent = todo.description;
 
         const date = document.createElement("p");
+        date.className = 'due-date-p'
         date.textContent = "Due Date";
         const dueDate = document.createElement("p");
         dueDate.textContent = formatDate(new Date(todo.dueDate));
 
         const daysToDue = document.createElement("p");
+        daysToDue.className = 'days-to-due'
         daysToDue.textContent = "Days to due";
 
         const daysToDueData = document.createElement("p");
         daysToDueData.innerHTML = differenceInDays(new Date(), new Date(todo.dueDate));
 
+        firstElemDiv.append(taskName, description, date, dueDate, daysToDue, daysToDueData)
+        const priorityDiv = document.createElement("div");
         const select = document.createElement("p");
-        select.textContent = "priority";
+        select.textContent = "Priority";
         const priority = document.createElement("p");
         priority.textContent = todo.priority;
+
+        priorityDiv.className = 'priority-div';
+        priorityDiv.append(select, priority);
 
         const delBtn = document.createElement("button");
         delBtn.className = "del-todo-btn";
@@ -90,23 +114,17 @@ export function createView({
         editBtn.dataset.projectId = id;
         editBtn.textContent = "Edit task";
 
+        const btnDiv = document.createElement("div");
+        btnDiv.className = "btn-div";
+        btnDiv.append(delBtn, editBtn);
+        firstDiv.append(firstElemDiv, btnDiv);
         row.append(
-            taskName,
-            description,
-            date,
-            dueDate,
-            daysToDue,
-            daysToDueData,
-            select,
-            priority,
-            delBtn,
-            editBtn
+            firstDiv,
+            priorityDiv,
         );
 
-        
         todoList.appendChild(row);
     });
-
         const addTodosBtn = document.createElement("button");
         addTodosBtn.textContent = "Add a task";
         addTodosBtn.dataset.projectId = id;
@@ -119,6 +137,8 @@ export function createView({
         const form1 = document.createElement("form");
         form1.className = "todo-form";
 
+        const div1 = document.createElement("div");
+        div1.className = 'form-div-1';
         const taskName = document.createElement("label");
         taskName.textContent = "Task Name";
         taskName.htmlFor = "task-name-input";
@@ -161,20 +181,21 @@ export function createView({
         prioritySelect.appendChild(o);
         });
 
-        const addTodoBtn = document.createElement("button");
-        addTodoBtn.textContent = "Add task";
-        addTodoBtn.dataset.projectId = id;
-        addTodoBtn.className = "add-task-btn";
-
-        form1.append(
-        taskName,
+        div1.append(taskName,
         taskNameInput,
         taskDescription,
         taskDescriptionInput,
         dueDate,
         dueDateInput,
         priority,
-        prioritySelect,
+        prioritySelect)
+        const addTodoBtn = document.createElement("button");
+        addTodoBtn.textContent = "Add task";
+        addTodoBtn.dataset.projectId = id;
+        addTodoBtn.className = "add-task-btn";
+
+        form1.append(
+        div1,
         addTodoBtn
         );
 
